@@ -40,7 +40,7 @@ public class MenuController  {
             String roleId = authority.getAuthority();
 
             //获取当前角色下的菜单
-            menuList = menuService.getUserMenusByRoleId(roleId);
+            menuList = menuService.getMenusByRoleId(roleId);
             for (TMenu tMenu : menuList) {
                 menuSet.add(tMenu);
             }

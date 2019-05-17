@@ -15,13 +15,13 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuDao;
 
     @Override
-    public List<String> getUserMenus() {
+    public List<TMenu> getUserMenus() {
         return menuDao.getUserMenus();
     }
 
     @Override
-    public List<TMenu> getUserMenusByRoleId(String roleId) {
-        List<TMenu> roleMap = menuDao.getUserMenusByRoleId(roleId);
+    public List<TMenu> getMenusByRoleId(String roleId) {
+        List<TMenu> roleMap = menuDao.getMenusByRoleId(roleId);
         return roleMap;
     }
 }

@@ -2,29 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.huajiance.springboot.mapper.UserMapper">
 
-	<resultMap id="TUser" type="com.huajiance.springboot.entity.TUser">
+	<resultMap id="testTUser" type="com.huajiance.springboot.entity.TUser">
 		<result column="userid" jdbcType="VARCHAR" property="userId" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
 		<result column="password" jdbcType="VARCHAR" property="password" />
 		<result column="sex" jdbcType="VARCHAR" property="sex" />
 	</resultMap>
 
-	<select id="getByUserId" resultMap="TUser">
+	<select id="getByUserId" resultMap="testTUser">
 		SELECT userid, name, password, sex FROM dev_user WHERE userid = #{userId}
 	</select>
 
-
-	<select id="getMenusByUserId" resultMap="TUser">
-		select distinct  da.userid
-		from dev_auth da join dev_role_auth dra on da.authid = dra.authid
-						 join dev_user_role dur on dur.roleid = dra.roleid
-		where dur.userid = #{userId}
-	</select>
-
-	<select id="getRoleByUserId" resultMap="TUser">
-		select distinct  da.userid
-		from dev_auth da join dev_role_auth dra on da.authid = dra.authid
-						 join dev_user_role dur on dur.roleid = dra.roleid
-		where dur.userid = #{userId}
-	</select>
 </mapper>

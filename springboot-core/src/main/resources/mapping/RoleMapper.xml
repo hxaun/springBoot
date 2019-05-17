@@ -17,5 +17,11 @@
 		where dur.userid=#{userId}
 	</select>
 
+	<select id="getRoleByUrl" parameterType="java.lang.String"  resultMap="TUserRole">
+		select distinct dra.roleid from dev_menu dm
+		   join dev_auth da on dm.name=da.name or dm.code=da.code
+		   join dev_role_auth dra on da.authid=dra.authid
+		where da.code=#{code} or da.name=#{name}  and dm.enabled='1'
+	</select>
 
 </mapper>

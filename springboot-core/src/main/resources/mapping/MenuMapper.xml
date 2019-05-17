@@ -22,7 +22,7 @@
 		select * from DEV_MENU t where t.enabled = '1' and t.menuid != '0'
 	</select>
 
-	<select id="getUserMenusByRoleId" resultType="TMenu">
+	<select id="getMenusByRoleId" resultType="TMenu">
 		select * from (
 			  select distinct dm.* from dev_menu dm
 				join dev_auth da on dm.name=da.name or dm.code=da.code

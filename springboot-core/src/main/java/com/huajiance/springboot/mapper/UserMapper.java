@@ -9,5 +9,4 @@ public interface UserMapper {
 
     TUser getByUserId(@Param("userId")String userId);
 
-    List<String> getMenusByUserId(@Param("userId") String userId);
 }

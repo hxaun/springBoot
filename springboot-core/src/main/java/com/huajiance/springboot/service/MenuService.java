@@ -9,7 +9,7 @@ public interface MenuService {
     /**
      * 获取用户菜单
      * */
-    List<String> getUserMenus();
+    List<TMenu> getUserMenus();
 
-    List<TMenu> getUserMenusByRoleId(String roleId);
+    List<TMenu> getMenusByRoleId(String roleId);
 }

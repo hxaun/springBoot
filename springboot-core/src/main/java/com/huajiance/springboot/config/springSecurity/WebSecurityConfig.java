@@ -1,9 +1,14 @@
 package com.huajiance.springboot.config.springSecurity;
 
+import com.huajiance.springboot.entity.TMenu;
+import com.huajiance.springboot.service.MenuService;
+import com.huajiance.springboot.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,9 +21,10 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*
  * spring security配置类
@@ -39,6 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new PasswordEncoder() {
@@ -56,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http // 定义当需要用户登录时候，转到的登录页面
+        http
             .addFilterAfter(dynamicallyUrlInterceptor(), FilterSecurityInterceptor.class)
             .authorizeRequests()
             .antMatchers( "/login.html").permitAll()
@@ -91,4 +99,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         interceptor.setAccessDecisionManager(new DynamicallyUrlAccessDecisionManager(decisionVoters));
         return interceptor;
     }
+
+
 }

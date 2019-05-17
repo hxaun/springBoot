@@ -19,4 +19,9 @@ public class RoleServiceImpl implements RoleService {
         List<TUserRole> roleList = roleDao.getRoleByUserId(userId);
         return roleList;
     }
+
+    @Override
+    public List<String> getRoleByUrl(String code, String name) {
+        return roleDao.getRoleByUrl(code, name);
+    }
 }
